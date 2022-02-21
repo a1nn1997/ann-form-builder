@@ -15,9 +15,9 @@ app.use('/api/auth', require('./routes/auth'))
 app.use('/api/pages', require('./routes/pages'))
 app.use('/api/forms', require('./routes/forms'))
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+// });
 
 
 const port = process.env.PORT || 4000;
