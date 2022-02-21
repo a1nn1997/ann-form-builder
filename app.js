@@ -19,7 +19,7 @@ app.get("*", (req, res) => {
 });
 
 
-//const APP_PORT = process.env.APP_PORT || 4000
-app.listen(process.env.APP_PORT || 4000, () => {
- //console.log(`Running server on http://localhost:${process.env.APP_PORT}`)
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+ console.log(`Running server on http://localhost:${port}`)
 })
