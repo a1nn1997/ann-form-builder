@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const path = require('path');
+//const path = require('path');
 require("dotenv").config()
 // ---connect to database---
 const dbConnect = require('./database/database')
@@ -15,12 +15,17 @@ app.use('/api/auth', require('./routes/auth'))
 app.use('/api/pages', require('./routes/pages'))
 app.use('/api/forms', require('./routes/forms'))
 
-// app.get("/", (req, res) => {
-//   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-// });
+// server static assets if in production
+if(process.env.NODE_ENV === 'production'){    
+  app.use(express.static('client/build'))  // set static folder 
+  //returning frontend for any route other than api 
+  app.get('*',(req,res)=>{     
+      res.sendFile (path.resolve(__dirname,'client','build',         
+                    'index.html' ));    
+  });
+}
 
-
-const port = process.env.PORT || 4000;
-app.listen(port, () => {
- console.log(`Running server on http://localhost:${port}`)
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+ console.log(`Running server on http://localhost:${PORT}`)
 })
